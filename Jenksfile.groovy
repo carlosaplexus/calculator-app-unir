@@ -1,21 +1,23 @@
 pipeline {
-    agent {
-        label 'node'
-    }
+
     stages {
-        stage('Build') {
+
+        stage('Build Docker Image') {
+            agent { label 'docker' }
             steps {
-                echo 'Building stage!'
                 sh 'make build'
             }
         }
-        stage('Unit tests') {
+
+        stage('Unit Tests') {
+            agent { label 'node' }
             steps {
                 sh 'make test-unit'
                 archiveArtifacts artifacts: 'results/*.xml'
             }
         }
     }
+
     post {
         always {
             junit 'results/*_result.xml'
