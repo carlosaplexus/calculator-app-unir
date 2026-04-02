@@ -35,20 +35,40 @@ pipeline {
     }
 
     post {
+
+        failure {
+            mail to: 'tu_correo@dominio.com',
+                subject: "Fallo en el job ${JOB_NAME} #${BUILD_NUMBER}",
+                body: """El pipeline ha fallado.
+
+Job: ${JOB_NAME}
+Ejecución: #${BUILD_NUMBER}
+URL: ${BUILD_URL}
+
+Revise los logs para más detalles.
+
+Notificación automática desde Jenkins
+"""
+        }
+
         always {
-            junit 'results/*_result.xml'
+            script {
+                node('docker') {
+                    junit 'results/*_result.xml'
 
-            publishHTML(target: [
-                reportDir: 'results/coverage',
-                reportFiles: 'index.html',
-                reportName: 'Cobertura de Código'
-            ])
+                    publishHTML(target: [
+                        reportDir: 'results/coverage',
+                        reportFiles: 'index.html',
+                        reportName: 'Cobertura de Código'
+                    ])
 
-            publishHTML(target: [
-                reportDir: 'results',
-                reportFiles: 'index.html',
-                reportName: 'Reporte E2E'
-            ])            
+                    publishHTML(target: [
+                        reportDir: 'results',
+                        reportFiles: 'index.html',
+                        reportName: 'Reporte E2E'
+                    ])
+                }
+            }
         }
     }
 }
