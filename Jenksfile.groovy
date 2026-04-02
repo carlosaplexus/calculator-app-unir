@@ -37,6 +37,18 @@ pipeline {
     post {
         always {
             junit 'results/*_result.xml'
+
+            publishHTML(target: [
+                reportDir: 'results/coverage',
+                reportFiles: 'index.html',
+                reportName: 'Cobertura de Código'
+            ])
+
+            publishHTML(target: [
+                reportDir: 'results',
+                reportFiles: 'index.html',
+                reportName: 'Reporte E2E'
+            ])            
         }
     }
 }
