@@ -32,6 +32,26 @@ pipeline {
                 archiveArtifacts artifacts: "results/*.xml"
             }
         }
+
+        stage('Publicar Reportes') {
+            steps {
+
+                junit 'results/*_result.xml' 
+
+                publishHTML(target: [
+                    reportDir: 'results/coverage',
+                    reportFiles: 'index.html',
+                    reportName: 'Cobertura de Código'
+                ])
+
+                publishHTML(target: [
+                    reportDir: 'results',
+                    reportFiles: 'index.html',
+                    reportName: 'Reporte E2E'
+                ])
+            }
+        }
+
     }
 
     post {
@@ -47,29 +67,13 @@ URL: ${BUILD_URL}
 
 Revise los logs para más detalles.
 
-Notificación automática desde Jenkins
+Notificación automática desdeJenkins
 """
         }
 
-        always {
-            script {
-                node('docker') {
-                    junit 'results/*_result.xml'
-
-                    publishHTML(target: [
-                        reportDir: 'results/coverage',
-                        reportFiles: 'index.html',
-                        reportName: 'Cobertura de Código'
-                    ])
-
-                    publishHTML(target: [
-                        reportDir: 'results',
-                        reportFiles: 'index.html',
-                        reportName: 'Reporte E2E'
-                    ])
-                }
-            }
-        }
+        // always {
+        //     junit 'results/*_result.xml'         
+        // }
     }
 }
 
