@@ -12,6 +12,12 @@ pipeline {
             }
         }
 
+        stage('Simular error') {
+            steps {
+                sh 'exit 1'
+            }
+        }        
+
         stage('Unit Tests') {
             steps {
                 sh 'make test-unit'
