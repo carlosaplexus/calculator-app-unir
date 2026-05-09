@@ -56,6 +56,24 @@ pipeline {
 
     post {
 
+        success {
+            mail to: 'carlos@carlosae.com',
+                subject: "Ejecución correcta del job ${JOB_NAME} #${BUILD_NUMBER}",
+                body: """El pipeline se ha ejecutado correctamente.
+
+Job: ${JOB_NAME}
+Ejecución: #${BUILD_NUMBER}
+URL: ${BUILD_URL}
+
+Notificación automática desdeJenkins
+"""
+        }
+
+        // always {
+        //     junit 'results/*_result.xml'         
+        // }
+    }
+
         failure {
             mail to: 'carlos@carlosae.com',
                 subject: "Fallo en el job ${JOB_NAME} #${BUILD_NUMBER}",
