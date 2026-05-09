@@ -1,3 +1,7 @@
+class InvalidPermissions(Exception):
+    def __init__(self, message="User has no permissions"):
+        super().__init__(message)
+
 class Calculator:
     def add(self, x, y):
         self.check_types(x, y)
