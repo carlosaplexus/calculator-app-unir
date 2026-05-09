@@ -57,7 +57,7 @@ pipeline {
     post {
 
         failure {
-            mail to: 'tu_correo@dominio.com',
+            mail to: 'carlos@carlosae.com',
                 subject: "Fallo en el job ${JOB_NAME} #${BUILD_NUMBER}",
                 body: """El pipeline ha fallado.
 
