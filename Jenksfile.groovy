@@ -45,7 +45,7 @@ pipeline {
                 ])
 
                 publishHTML(target: [
-                    reportDir: 'results/e2e',
+                    reportDir: 'results',
                     reportFiles: 'index.html',
                     reportName: 'Reporte E2E'
                 ])
