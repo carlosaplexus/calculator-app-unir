@@ -68,7 +68,6 @@ pipeline {
                 Notificación automática desdeJenkins
                 """
         }
-    }
 
         failure {
             mail to: 'carlos@carlosae.com',
@@ -88,6 +87,6 @@ pipeline {
         // always {
         //     junit 'results/*_result.xml'         
         // }
-    
+    }
 }
 
