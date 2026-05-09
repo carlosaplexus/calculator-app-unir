@@ -61,3 +61,49 @@ class TestCalculate(unittest.TestCase):
     def test_multiply_method_fails_without_permissions(self, _validate_permissions):
         with self.assertRaises(InvalidPermissions):
             self.calc.multiply(2, 2)
+
+    def test_power_method_returns_correct_result(self):
+        self.assertEqual(8, self.calc.power(2, 3))
+        self.assertEqual(1, self.calc.power(5, 0))
+        self.assertEqual(0.25, self.calc.power(2, -2))
+
+    def test_power_method_fails_with_nan_parameter(self):
+        self.assertRaises(TypeError, self.calc.power, "2", 3)
+        self.assertRaises(TypeError, self.calc.power, 2, "3")
+        self.assertRaises(TypeError, self.calc.power, None, 3)
+        self.assertRaises(TypeError, self.calc.power, 2, None)
+
+    def test_sqrt_method_returns_correct_result(self):
+        self.assertEqual(3, self.calc.sqrt(9))
+        self.assertEqual(0, self.calc.sqrt(0))
+        self.assertAlmostEqual(1.4142, self.calc.sqrt(2), places=4)
+
+    def test_sqrt_method_fails_with_negative_value(self):
+        self.assertRaises(ValueError, self.calc.sqrt, -1)
+        self.assertRaises(ValueError, self.calc.sqrt, -100)
+
+    def test_sqrt_method_fails_with_nan_parameter(self):
+        self.assertRaises(TypeError, self.calc.sqrt, "9")
+        self.assertRaises(TypeError, self.calc.sqrt, None)
+        self.assertRaises(TypeError, self.calc.sqrt, object())
+
+    def test_log10_method_returns_correct_result(self):
+        self.assertEqual(2, self.calc.log10(100))
+        self.assertEqual(0, self.calc.log10(1))
+
+    def test_log10_method_fails_with_invalid_value(self):
+        self.assertRaises(ValueError, self.calc.log10, 0)
+        self.assertRaises(ValueError, self.calc.log10, -10)
+
+    def test_log10_method_fails_with_nan_parameter(self):
+        self.assertRaises(TypeError, self.calc.log10, "100")
+        self.assertRaises(TypeError, self.calc.log10, None)
+        self.assertRaises(TypeError, self.calc.log10, object())  
+
+    def test_method_fails_with_invalid_types(self):
+        self.assertRaises(TypeError, self.calc.add, "a", 1)
+        self.assertRaises(TypeError, self.calc.add, 1, "b")
+        self.assertRaises(TypeError, self.calc.add, "a", "b")
+
+if __name__ == "__main__":  # pragma: no cover
+    unittest.main()
