@@ -61,17 +61,13 @@ pipeline {
                 subject: "Ejecución correcta del job ${JOB_NAME} #${BUILD_NUMBER}",
                 body: """El pipeline se ha ejecutado correctamente.
 
-Job: ${JOB_NAME}
-Ejecución: #${BUILD_NUMBER}
-URL: ${BUILD_URL}
+                Job: ${JOB_NAME}
+                Ejecución: #${BUILD_NUMBER}
+                URL: ${BUILD_URL}
 
-Notificación automática desdeJenkins
-"""
+                Notificación automática desdeJenkins
+                """
         }
-
-        // always {
-        //     junit 'results/*_result.xml'         
-        // }
     }
 
         failure {
@@ -79,19 +75,19 @@ Notificación automática desdeJenkins
                 subject: "Fallo en el job ${JOB_NAME} #${BUILD_NUMBER}",
                 body: """El pipeline ha fallado.
 
-Job: ${JOB_NAME}
-Ejecución: #${BUILD_NUMBER}
-URL: ${BUILD_URL}
+            Job: ${JOB_NAME}
+            Ejecución: #${BUILD_NUMBER}
+            URL: ${BUILD_URL}
 
-Revise los logs para más detalles.
+            Revise los logs para más detalles.
 
-Notificación automática desdeJenkins
-"""
+            Notificación automática desdeJenkins
+            """
         }
 
         // always {
         //     junit 'results/*_result.xml'         
         // }
-    }
+    
 }
 
