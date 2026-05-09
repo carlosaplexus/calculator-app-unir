@@ -10,7 +10,9 @@ def convert_to_number(operand):
         raise TypeError("Operator cannot be converted to number")
 
 
-def InvalidConvertToNumber(operand):
+""" 
+    Este método es identico al anterior y no se usa en ninguna otra parte
+    def InvalidConvertToNumber(operand):
     try:
         if "." in operand:
             return (float(operand))
@@ -18,4 +20,9 @@ def InvalidConvertToNumber(operand):
         return int(operand)
 
     except ValueError:
-        raise TypeError("Operator cannot be converted to number")
+        raise TypeError("Operator cannot be converted to number") """
+
+
+def validate_permissions(operation, user):
+    print(f"checking permissions of {user} for operation {operation}")
+    return user == "user1"
