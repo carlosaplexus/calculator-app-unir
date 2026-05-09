@@ -55,14 +55,6 @@ pipeline {
     }
 
     post {
-
-        success {
-
-            echo "Job: ${JOB_NAME}"
-            echo "Ejecución: #${BUILD_NUMBER}"
-            echo "URL: ${BUILD_URL}"           
-        }
-
         failure {
 
             echo "Job: ${JOB_NAME}"
