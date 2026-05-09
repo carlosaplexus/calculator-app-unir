@@ -54,8 +54,20 @@ pipeline {
 
     }
 
-    // post {
-    //     failure {
+    post {
+
+        success {
+
+            echo "Job: ${JOB_NAME}"
+            echo "Ejecución: #${BUILD_NUMBER}"
+            echo "URL: ${BUILD_URL}"           
+        }
+
+        failure {
+
+            echo "Job: ${JOB_NAME}"
+            echo "Ejecución: #${BUILD_NUMBER}"
+            echo "URL: ${BUILD_URL}"           
     //         mail to: 'correo@ejemplo.com',
     //             subject: "Fallo en el job ${JOB_NAME} #${BUILD_NUMBER}",
     //             body: """El pipeline ha fallado.
@@ -68,7 +80,7 @@ pipeline {
 
     //         Notificación automática desdeJenkins
     //         """
-    //     }
-    // }
+        }
+    }
 }
 
