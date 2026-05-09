@@ -12,11 +12,12 @@ pipeline {
             }
         }
 
-        stage('Simular error') {
-            steps {
-                sh 'exit 1'
-            }
-        }        
+        // //solo incluido para forzar el error y probar el post failure
+        // stage('Simular error') {
+        //     steps {
+        //         sh 'exit 1' 
+        //     }
+        // }        
 
         stage('Unit Tests') {
             steps {
