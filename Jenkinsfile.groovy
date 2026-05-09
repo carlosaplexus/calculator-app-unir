@@ -69,10 +69,6 @@ pipeline {
     //         Notificación automática desdeJenkins
     //         """
     //     }
-
-    //     // always {
-    //     //     junit 'results/*_result.xml'         
-    //     // }
     // }
 }
 
