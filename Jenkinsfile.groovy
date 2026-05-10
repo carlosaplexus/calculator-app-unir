@@ -40,24 +40,23 @@ pipeline {
             }
         }
 
-        stage('Debug workspace') {
-            steps {
-                sh "ls -R ${WORKSPACE}"
-            }
-        }
+        // stage('Debug workspace') {
+        //     steps {
+        //         sh "ls -R ${WORKSPACE}"
+        //     }
+        // }
 
         stage('Convertir XML a HTML') {
             steps {
-                sh '''
+                sh """
                     docker run --rm \
-                        -v ${WORKSPACE}:/work \
-                        -w /work \
-                        alpine:3.20 sh -c "
+                        -v ${WORKSPACE}:/workspace \
+                        alpine:3.20 sh -c '
                             apk add --no-cache libxslt &&
-                            mkdir -p results/e2e &&
-                            xsltproc test/e2e/junit-to-html.xsl results/cypress_result.xml > results/e2e/index.html
-                        "
-                '''
+                            mkdir -p /workspace/results/e2e &&
+                            xsltproc /workspace/test/e2e/junit-to-html.xsl /workspace/results/cypress_result.xml > /workspace/results/e2e/index.html
+                        '
+                """
             }
         }
 
