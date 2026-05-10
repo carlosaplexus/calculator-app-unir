@@ -43,8 +43,14 @@ pipeline {
         stage('Convertir XML a HTML') {
             steps {
                 sh '''
-                    mkdir -p results/e2e
-                    xsltproc test/e2e/junit-to-html.xsl results/cypress_result.xml > results/e2e/index.html
+                    docker run --rm \
+                        -v $PWD:/work \
+                        -w /work \
+                        alpine:3.20 sh -c "
+                            apk add --no-cache libxslt &&
+                            mkdir -p results/e2e &&
+                            xsltproc test/e2e/junit-to-html.xsl results/cypress_result.xml > results/e2e/index.html
+                        "
                 '''
             }
         }
