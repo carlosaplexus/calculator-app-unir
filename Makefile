@@ -37,6 +37,7 @@ test-e2e:
 	docker cp ./test/e2e/cypress.json e2e-tests:/cypress.json
 	docker cp ./test/e2e/cypress e2e-tests:/cypress
 	docker cp ./node_modules e2e-tests:/node_modules
+	docker exec e2e-tests mkdir -p /results/e2e
 	docker start -a e2e-tests || true
 	docker cp e2e-tests:/results ./  || true
 	docker rm --force apiserver  || true

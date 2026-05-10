@@ -33,6 +33,12 @@ pipeline {
             }
         }
 
+        stage('Install E2E dependencies') {
+            steps {
+                sh 'npm install'
+            }
+        }
+
         stage('E2E Tests') {
             steps {
                 sh 'make test-e2e'
