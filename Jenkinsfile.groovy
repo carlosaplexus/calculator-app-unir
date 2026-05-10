@@ -48,15 +48,18 @@ pipeline {
 
         stage('Convertir XML a HTML') {
             steps {
-                sh """
-                    docker run --rm \
-                        -v ${WORKSPACE}:/workspace \
-                        alpine:3.20 sh -c '
-                            apk add --no-cache libxslt &&
-                            mkdir -p /workspace/results/e2e &&
-                            xsltproc /workspace/test/e2e/junit-to-html.xsl /workspace/results/cypress_result.xml > /workspace/results/e2e/index.html
-                        '
-                """
+                script {
+                    def ws = env.WORKSPACE
+                    sh """
+                        docker run --rm \
+                            -v ${ws}:/workspace \
+                            alpine:3.20 sh -c '
+                                apk add --no-cache libxslt &&
+                                mkdir -p /workspace/results/e2e &&
+                                xsltproc /workspace/test/e2e/junit-to-html.xsl /workspace/results/cypress_result.xml > /workspace/results/e2e/index.html
+                            '
+                    """
+                }
             }
         }
 
