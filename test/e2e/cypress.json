@@ -1,10 +1,10 @@
 {
-  "pluginsFile": false,
-  "supportFile": false,
   "defaultCommandTimeout": 1000,
-  "reporter": "junit",
+  "reporter": "cypress-mochawesome-reporter",
   "reporterOptions": {
-    "mochaFile": "/results/cypress_result.xml",
-    "toConsole": false
+    "reportDir": "results/e2e",
+    "overwrite": true,
+    "html": true,
+    "json": false
   }
 }
