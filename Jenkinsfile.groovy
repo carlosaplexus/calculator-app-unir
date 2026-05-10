@@ -34,6 +34,9 @@ pipeline {
         }
 
         stage('Install E2E dependencies') {
+            agent {
+                docker { image 'node:18' }
+            }
             steps {
                 sh 'npm install'
             }
