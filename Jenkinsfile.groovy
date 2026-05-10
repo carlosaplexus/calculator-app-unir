@@ -33,18 +33,6 @@ pipeline {
             }
         }
 
-        stage('Install E2E dependencies') {
-            steps {
-                sh '''
-                    docker run --rm \
-                        -v $PWD:/app \
-                        -w /app \
-                        node:18 \
-                        npm install
-                '''
-            }
-        }
-
         stage('E2E Tests') {
             steps {
                 sh 'make test-e2e'

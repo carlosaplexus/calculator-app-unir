@@ -1,10 +1,7 @@
 {
   "defaultCommandTimeout": 1000,
-  "reporter": "cypress-mochawesome-reporter",
+  "reporter": "html",
   "reporterOptions": {
-    "reportDir": "results/e2e",
-    "overwrite": true,
-    "html": true,
-    "json": false
+    "reportDir": "results/e2e"
   }
 }
