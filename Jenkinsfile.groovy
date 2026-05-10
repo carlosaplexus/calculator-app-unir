@@ -51,11 +51,11 @@ pipeline {
                     reportName: 'Unit Tests Report'
                 ])
 
-                // publishHTML(target: [
-                //     reportDir: 'results/api',
-                //     reportFiles: 'index.html',
-                //     reportName: 'API Tests Report'
-                // ])
+                publishHTML(target: [
+                    reportDir: 'results/api',
+                    reportFiles: 'index.html',
+                    reportName: 'API Tests Report'
+                ])
 
                 publishHTML(target: [
                     reportDir: 'results/coverage',
