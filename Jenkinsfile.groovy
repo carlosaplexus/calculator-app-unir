@@ -46,6 +46,18 @@ pipeline {
                 junit 'results/*_result.xml' 
 
                 publishHTML(target: [
+                    reportDir: 'results/unit',
+                    reportFiles: 'index.html',
+                    reportName: 'Unit Tests Report'
+                ])
+
+                publishHTML(target: [
+                    reportDir: 'results/api',
+                    reportFiles: 'index.html',
+                    reportName: 'API Tests Report'
+                ])
+
+                publishHTML(target: [
                     reportDir: 'results/coverage',
                     reportFiles: 'index.html',
                     reportName: 'Cobertura de Código'
