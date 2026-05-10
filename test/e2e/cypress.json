@@ -5,6 +5,8 @@
   "reporter": "junit",
   "reporterOptions": {
     "mochaFile": "/results/cypress_result.xml",
+    "testsuiteTitle": "Cypress E2E test",
     "toConsole": false
   }
 }
+
