@@ -40,6 +40,15 @@ pipeline {
             }
         }
 
+        stage('Convertir XML a HTML') {
+            steps {
+                sh '''
+                    mkdir -p results/e2e
+                    xsltproc test/e2e/junit-to-html.xsl results/cypress_result.xml > results/e2e/index.html
+                '''
+            }
+        }
+
         stage('Publicar Reportes') {
             steps {
 
