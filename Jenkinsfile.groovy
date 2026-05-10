@@ -40,6 +40,12 @@ pipeline {
             }
         }
 
+        stage('Debug workspace') {
+            steps {
+                sh "ls -R ${WORKSPACE}"
+            }
+        }
+
         stage('Convertir XML a HTML') {
             steps {
                 sh '''
