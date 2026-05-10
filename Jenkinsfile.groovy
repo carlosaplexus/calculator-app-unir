@@ -44,7 +44,7 @@ pipeline {
             steps {
                 sh '''
                     docker run --rm \
-                        -v $PWD:/work \
+                        -v ${WORKSPACE}:/work \
                         -w /work \
                         alpine:3.20 sh -c "
                             apk add --no-cache libxslt &&
