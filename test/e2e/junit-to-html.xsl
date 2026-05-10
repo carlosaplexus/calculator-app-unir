@@ -8,25 +8,20 @@
 <html>
 <head>
     <title>JUnit Report</title>
-    <style>
-        body { font-family: Arial; margin: 20px; }
-        h1 { color: #444; }
-        table { border-collapse: collapse; width: 100%; }
-        th, td { border: 1px solid #ccc; padding: 8px; }
-        th { background: #eee; }
-        .fail { background: #fdd; }
-        .pass { background: #dfd; }
-    </style>
 </head>
-<body>
-    <h1>JUnit Test Report</h1>
 
-    <table>
-        <tr>
-            <th>Test</th>
-            <th>Class</th>
-            <th>Time</th>
-            <th>Status</th>
+<body bgcolor="#f4f6f9" text="#333333">
+
+    <h1 style="font-family: Arial; color: #2c3e50;">
+        JUnit Test Report
+    </h1>
+
+    <table width="100%" border="1" cellpadding="8" cellspacing="0" bordercolor="#cccccc" bgcolor="#ffffff">
+        <tr bgcolor="#3498db">
+            <th><font color="white">Test</font></th>
+            <th><font color="white">Class</font></th>
+            <th><font color="white">Time</font></th>
+            <th><font color="white">Status</font></th>
         </tr>
 
         <xsl:for-each select="//testcase">
@@ -37,15 +32,16 @@
 
                 <xsl:choose>
                     <xsl:when test="failure">
-                        <td class="fail">FAILED</td>
+                        <td bgcolor="#fdecea"><font color="#c0392b"><b>FAILED</b></font></td>
                     </xsl:when>
                     <xsl:otherwise>
-                        <td class="pass">PASSED</td>
+                        <td bgcolor="#e8f8f1"><font color="#27ae60"><b>PASSED</b></font></td>
                     </xsl:otherwise>
                 </xsl:choose>
             </tr>
         </xsl:for-each>
     </table>
+
 </body>
 </html>
 </xsl:template>
