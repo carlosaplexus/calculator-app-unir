@@ -36,6 +36,7 @@ test-e2e:
 	docker create --network calc-test-e2e --name e2e-tests cypress/included:4.9.0 --browser chrome || true
 	docker cp ./test/e2e/cypress.json e2e-tests:/cypress.json
 	docker cp ./test/e2e/cypress e2e-tests:/cypress
+	docker cp ./node_modules e2e-tests:/node_modules
 	docker start -a e2e-tests || true
 	docker cp e2e-tests:/results ./  || true
 	docker rm --force apiserver  || true
